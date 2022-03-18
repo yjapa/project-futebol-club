@@ -15,7 +15,6 @@ Club.init({
   },
   clubName: {
     type: DataTypes.STRING,
-    field: 'club_name',
     allowNull: false,
   },
 }, {
