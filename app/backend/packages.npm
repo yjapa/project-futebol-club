@@ -1,3 +1,4 @@
 joi
 bcryptjs
-@types/bcryptjs
+-D @types/bcryptjs
+shelljs

@@ -1,20 +1,19 @@
 import * as express from 'express';
 import * as bodyParse from 'body-parser';
 
-import { Login } from './routers';
+import { LoginRouter } from './routers';
 
 class App {
   public app: express.Express;
 
-  private parseJson = bodyParse;
+  private LoginRouter = new LoginRouter();
 
-  private loginRouter = new Login();
+  private parseJson = bodyParse;
 
   constructor() {
     this.app = express();
     this.config();
     this.app.use(this.parseJson.json());
-    this.app.use('/login', this.loginRouter.router);
   }
 
   private config():void {
@@ -29,6 +28,7 @@ class App {
   }
 
   public start(PORT: string | number):void {
+    this.app.use('/login', this.LoginRouter.router);
     this.app.listen(PORT, () => {
       console.log(`Online na porta ${PORT}`);
     });

@@ -1,8 +1,8 @@
 import * as jwt from 'jsonwebtoken';
 import { readFileSync } from 'fs';
 import { NextFunction, Response } from 'express';
-import { RequestAuth } from '../interfaces/interfaces';
-import statusCode from '../enums/StatusCode';
+import { RequestAuth } from '../interfaces/Token';
+import { StatusCode } from '../utils';
 
 class ValidateToken {
   private readFileSync = (file: string) => readFileSync(file, { encoding: 'utf-8' });
@@ -12,7 +12,7 @@ class ValidateToken {
     const token = req.headers.authorization;
 
     if (!token) {
-      return res.status(statusCode.INVALID_FIELD).json({ error: 'Token not found' });
+      return res.status(StatusCode.NOT_FOUND).json({ error: 'Token not found' });
     }
 
     try {
@@ -20,7 +20,7 @@ class ValidateToken {
       req.user = { id, email, role, username };
       next();
     } catch (error) {
-      return res.status(statusCode.INVALID_FIELD).json({ error: 'Invalid token' });
+      return res.status(StatusCode.BAD_REQUEST).json({ error: 'Invalid token' });
     }
   }
 }
