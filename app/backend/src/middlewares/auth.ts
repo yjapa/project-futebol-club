@@ -7,7 +7,13 @@ import { StatusCode } from '../utils';
 class ValidateToken {
   private readFileSync = (file: string) => readFileSync(file, { encoding: 'utf-8' });
 
-  validate(req: RequestAuth, res: Response, next: NextFunction) {
+  private StatusCode = StatusCode;
+
+  constructor() {
+    this.validate = this.validate.bind(this);
+  }
+
+  validate(req: RequestAuth, res: Response, _next: NextFunction) {
     const SECRET = this.readFileSync('jwt.evaluation.key');
     const token = req.headers.authorization;
 
@@ -18,7 +24,7 @@ class ValidateToken {
     try {
       const { id, email, role, username } = jwt.verify(token, SECRET) as jwt.JwtPayload;
       req.user = { id, email, role, username };
-      next();
+      return res.status(this.StatusCode.OK).json(role);
     } catch (error) {
       return res.status(StatusCode.BAD_REQUEST).json({ error: 'Invalid token' });
     }
