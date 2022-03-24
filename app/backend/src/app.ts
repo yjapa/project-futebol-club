@@ -14,6 +14,7 @@ class App {
     this.app = express();
     this.config();
     this.app.use(this.parseJson.json());
+    this.app.use('/login', this.LoginRouter.router);
   }
 
   private config():void {
@@ -28,7 +29,6 @@ class App {
   }
 
   public start(PORT: string | number):void {
-    this.app.use('/login', this.LoginRouter.router);
     this.app.listen(PORT, () => {
       console.log(`Online na porta ${PORT}`);
     });
