@@ -18,7 +18,7 @@ class ValidateToken {
     const token = req.headers.authorization;
 
     if (!token) {
-      return res.status(StatusCode.NOT_FOUND).json({ error: 'Token not found' });
+      return res.status(StatusCode.INVALID_FIELDS).json({ error: 'Token not found' });
     }
 
     try {
