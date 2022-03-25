@@ -26,8 +26,6 @@ class App {
     };
 
     this.app.use(accessControl);
-
-
   }
 
   public start(PORT: string | number):void {
