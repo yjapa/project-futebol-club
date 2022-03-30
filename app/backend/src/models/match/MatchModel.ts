@@ -16,6 +16,30 @@ class MatchModel {
 
     return allMatches;
   }
+
+  async getAllInProgress() {
+    const allMatches = await this.matchModel.findAll({
+      where: { inProgress: true },
+      include: [
+        { model: this.clubModel, as: 'homeClub', attributes: ['clubName'] },
+        { model: this.clubModel, as: 'awayClub', attributes: ['clubName'] },
+      ],
+    });
+
+    return allMatches;
+  }
+
+  async getAllFinished() {
+    const allMatches = await this.matchModel.findAll({
+      where: { inProgress: false },
+      include: [
+        { model: this.clubModel, as: 'homeClub', attributes: ['clubName'] },
+        { model: this.clubModel, as: 'awayClub', attributes: ['clubName'] },
+      ],
+    });
+
+    return allMatches;
+  }
 }
 
 export default MatchModel;
