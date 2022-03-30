@@ -10,7 +10,6 @@ module.exports = {
       },
       club_name: {
         type: Sequelize.STRING,
-        field: 'club_name',
         allowNull: false,
       },
     });
