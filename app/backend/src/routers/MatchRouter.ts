@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { MatchController } from '../controllers/match';
 import Auth from '../middlewares/auth';
-// import ValidateMatch from '../middlewares/ValidateMatch';
 
 class Match {
   public router: Router;
@@ -16,6 +15,7 @@ class Match {
     this.findById();
     this.createMatch();
     this.finishMatch();
+    this.updateMatch();
   }
 
   private getAll() {
@@ -44,6 +44,13 @@ class Match {
     this.router.patch(
       '/:id/finish',
       this.MatchController.finishMatch,
+    );
+  }
+
+  private updateMatch() {
+    this.router.patch(
+      '/:id',
+      this.MatchController.updateMatch,
     );
   }
 }

@@ -1,14 +1,15 @@
 import { MatchModel } from '../../models/match';
 import { StatusCode } from '../../utils';
 import { NewMatch } from '../../interfaces/match/NewMatch';
-// import { ClubModel } from '../../models/club';
+import { ScoreDTO } from '../../interfaces/match/ScoreDTO';
+import Match from '../../database/models/Match';
 
 class MatchService {
   private MatchModel = new MatchModel();
 
   private StatusCode = StatusCode;
 
-  // private ClubModel = new ClubModel();
+  private matchModel = Match;
 
   async getAll(inProgress: string | undefined) {
     let match;
@@ -51,6 +52,13 @@ class MatchService {
     const { code, data } = await this.MatchModel.finishMatch(id);
 
     return { code, data };
+  }
+
+  async updateMatch(id: string, score: ScoreDTO) {
+    const [success] = await this.matchModel.update(score, { where: { id, inProgress: true } });
+
+    return success ? { code: 200, data: { message: 'Match score updated' } }
+      : { code: 422, data: { message: 'Match already over or does not exist' } };
   }
 }
 

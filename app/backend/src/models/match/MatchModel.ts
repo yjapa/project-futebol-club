@@ -3,6 +3,7 @@ import Club from '../../database/models/Club';
 import { StatusCode } from '../../utils';
 import { NewMatch } from '../../interfaces/match/NewMatch';
 import { ClubModel } from '../club';
+import { ScoreDTO } from '../../interfaces/match/ScoreDTO';
 
 class MatchModel {
   private matchModel = Match;
@@ -82,7 +83,15 @@ class MatchModel {
         data: { message: 'Match finished or not found' } };
     }
 
-    return { code: 200, data: { message: 'Finalizado' } };
+    return { code: this.StatusCode.OK, data: { message: 'Finished match' } };
+  }
+
+  async updateMatch(id: string, score: ScoreDTO) {
+    const [result] = await this.matchModel.update(score, { where: { id, inProgress: true } });
+
+    return result
+      ? { code: this.StatusCode.OK, data: { message: 'Updated match' } }
+      : { code: 422, data: { message: 'Match already over or does not exist' } };
   }
 }
 
