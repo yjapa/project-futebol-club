@@ -1,7 +1,8 @@
-import { Router } from 'express';
+import { Router, Response } from 'express';
 import { LoginController } from '../controllers/login';
 import ValidateLogin from '../middlewares/ValidateLogin';
 import Auth from '../middlewares/auth';
+import { RequestAuth } from '../interfaces/Token';
 
 class Login {
   public router: Router;
@@ -30,6 +31,7 @@ class Login {
     this.router.get(
       '/validate',
       this.auth.validate,
+      async (req: RequestAuth, res: Response) => res.status(200).send(req.user?.role),
     );
   }
 }

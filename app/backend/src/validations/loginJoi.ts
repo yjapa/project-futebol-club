@@ -2,7 +2,7 @@ import * as Joi from 'joi';
 
 const FIELD_REQUIRED = 'All fields must be filled';
 
-export const loginJoi = Joi.object({
+const loginJoi = Joi.object({
   email: Joi.string().required().messages({
     'string.base': '"email" must be a string',
     'any.required': FIELD_REQUIRED,
@@ -16,4 +16,4 @@ export const loginJoi = Joi.object({
   }),
 });
 
-export const lint = () => {};
+export default loginJoi;
