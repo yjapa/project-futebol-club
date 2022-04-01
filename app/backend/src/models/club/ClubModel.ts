@@ -6,6 +6,7 @@ class ClubModel {
 
   async getAll() {
     const allClubs = await this.clubModel.findAll();
+
     return allClubs;
   }
 

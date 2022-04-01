@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as bodyParse from 'body-parser';
 
-import { LoginRouter, ClubRouter, MatchRouter } from './routers';
+import { LoginRouter, ClubRouter, MatchRouter, LeaderboardRouter } from './routers';
 
 class App {
   public app: express.Express;
@@ -12,6 +12,8 @@ class App {
 
   private MatchRouter = new MatchRouter();
 
+  private LeaderboardRouter = new LeaderboardRouter();
+
   private parseJson = bodyParse;
 
   constructor() {
@@ -21,6 +23,7 @@ class App {
     this.app.use('/login', this.LoginRouter.router);
     this.app.use('/clubs', this.ClubRouter.router);
     this.app.use('/matchs', this.MatchRouter.router);
+    this.app.use('/leaderboard', this.LeaderboardRouter.router);
   }
 
   private config():void {

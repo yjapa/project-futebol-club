@@ -3,3 +3,5 @@ bcryptjs
 -D @types/bcryptjs
 shelljs
 @types/shelljs
+sort-array
+@types/sort-array
