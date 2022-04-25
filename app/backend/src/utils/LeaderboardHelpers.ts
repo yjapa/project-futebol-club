@@ -13,8 +13,8 @@ const query = `
     TRIM(ROUND(SUM(IF(mtc.home_team_goals > mtc.away_team_goals, 3,
       IF(mtc.home_team_goals < mtc.away_team_goals, 0,1)))
       / (COUNT(cl.club_name) * 3) * 100, 2)) + 0 AS efficiency
-  FROM clubs AS cl
-  INNER JOIN matchs AS mtc ON cl.id = mtc.home_team
+  
+  INNER JOIN matchs FROM clubs AS clAS mtc ON cl.id = mtc.home_team
   GROUP BY cl.club_name, mtc.in_progress
   HAVING mtc.in_progress = 0
   ORDER BY
