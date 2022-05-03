@@ -45,6 +45,12 @@ Para rodar o projeto, utilize na pasta raiz o comando:
 npm run compose:up
 ```
 
+Na pasta `frontend`, utilize o comando a seguir para visualizar a página da aplicação:
+
+```bash
+npm start
+```
+
 * Os endpoints estão no padrão REST, ou seja, utilize os verbos HTTP para realizar as requisições.
 
 ## Requisições
