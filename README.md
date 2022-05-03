@@ -128,3 +128,8 @@ npm run compose:up
 
 * Para filtrar a classificação, devemos acessar o endpoint `GET /leaderboard/home`.
 * A requisição deve conter no Header o `token` gerado no login 
+
+## Observações:
+
+* O front-end deste projeto já foi provido pela @Trybe.
+* Projeto em andamento para melhorias e implementações de mais funcionalidades.
