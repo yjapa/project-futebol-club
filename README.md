@@ -26,7 +26,7 @@ npm install
 
 ## Variáveis de Ambiente
 
-Na raiz do projeto, crie um arquivo .env para configurar as variáveis de ambiente. Por exemplo, caso o seu usuário SQL seja `nome` e senha `1234` seu arquivo ficará desta forma:
+Na pasta `backend` do projeto, crie um arquivo .env para configurar as variáveis de ambiente. Por exemplo, caso o seu usuário SQL seja `nome` e senha `1234` seu arquivo ficará desta forma:
 
 ```bash
 PORT=3001
